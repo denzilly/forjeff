@@ -2,18 +2,22 @@ from selenium import webdriver
 from random import *
 import csv
 import os
+import time
+from selenium.webdriver.common.action_chains import ActionChains
+
+
+############LIST OF XPATHS##############
+cookie1 = "/html/body/div[1]/div/div/div/div[4]/ul/li[1]/div/label[2]"
+cookie2 = "/html/body/div[1]/div/div/div/div[4]/ul/li[2]/div/label[2]"
+cookiebtn = "/html/body/div[1]/div/div/div/div[5]/button"
 
 
 
+textentry = "/html/body/div[1]/div/div/div[3]/div[2]/div/div[1]/div/div/div[1]/div/input"
+slayerbtn = "/html/body/div[1]/div/div/div[3]/div[2]/div/ul/div/div/li/div/div/div/div/div[3]/button[2]"
 
-
-
-##open browser and initialise browser
-def initialise():
-
-    driver = webdriver.Firefox()
-    driver.get("https://stem.nporadio2.nl/top2000/1")
-
+songnext = "/html/body/div[2]/div/div/div[3]/div[2]/div/div[2]/div/div/div/div/a"
+motiveernext = "/html/body/div[2]/div/div/div[2]/div[2]/div/div/div/div/div[2]/div/a"
 
 
 
@@ -26,22 +30,58 @@ def initialise():
 
 def vote():
 
+
+    driver = webdriver.Firefox()
+    driver.get("https://stem.nporadio2.nl/top2000/1")
+
+
+
+    wtl = 3
+    wts = 0.7
+    #waittime
+
+    #focking cookies Man
+
+    cookielist = [cookie1, cookie2, cookie3]
+    for x in cookielist:
+        time.sleep(wts)
+        driver.find_element_by_xpath(x).click()
+
+
+    #scroll all elements into view
+    lastsong = driver.find_element_by_xpath("/html/body/div[1]/div/div/div[3]/div[2]/div/ul/div/div/li[6]/div/div/div/div/div[2]/p[1]")
+
+
+
+    actions = ActionChains(driver)
+    driver.execute_script("arguments[0].scrollIntoView();", lastsong)
+
+
     position = randint(1,5)
+    #position = 1
+    print("Position is " + str(position))
     for x in range(1,5):
         if x == position:
             #select field and search add slayer if
-            driver.findElement(By.xpath("/html/body/div[2]/div/div/div[3]/div[2]/div/div[1]/div/div/div[1]/div/input")).sendkeys("slayer")
+            time.sleep(wtl)
+            driver.find_element_by_xpath(textentry).send_keys("slayer")
             #maybe add a wait here in case it tries to select the add button too quickly
-            driver.findElement(By.xpath("/html/body/div[2]/div/div/div[3]/div[2]/div/ul/div/div/li/div/div/div/div/div[3]/button[2]")).click()
+            time.sleep(wtl)
+            driver.find_element_by_xpath(slayerbtn).click()
+            time.sleep(wtl)
+            driver.find_element_by_xpath(textentry).clear()
+
 
         else:
-            iconpath = "/html/body/div[2]/div/div/div[3]/div[2]/div/ul/div/div/li[" + str(x) + "]/div/div/div/div/div[3]/button[2]"
-            driver.findElement(By.xpath(iconpath)).click()
+            time.sleep(wts)
+            driver.find_element_by_xpath("/html/body/div[1]/div/div/div[3]/div[2]/div/ul/div/div/li[%s]/div/div/div/div/div[3]/button[2]" % (str(x),)).click()
+            time.sleep(wts)
+            print("vote %s was cast" % (x,))
 
     #click through to next pages
-    driver.findElement(By.xpath("/html/body/div[2]/div/div/div[3]/div[2]/div/div[2]/div/div/div/div/a")).click()
-    #wait?
-    driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div[2]/div/div/div/div/div[2]/div/a")).click()
+    driver.find_element_by_xpath(songnext).click()
+    time.sleep(wts)
+    driver.find_element_by_xpath(motiveernext).click()
 
 
 def namegenerator():
@@ -64,4 +104,6 @@ def namegenerator():
 
     return full_name
 
-print(namegenerator())    
+#print(namegenerator())
+
+vote()
