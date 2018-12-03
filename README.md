@@ -1,5 +1,13 @@
 # For Jeff                          
 
+
+## Todo
+
+- Add VPN support using openpyn
+- Add support for nonocaptcha
+
+
+
 ##Updates since original commit
 
 ###v0.1
@@ -21,16 +29,3 @@ In order to avoid detection, certain additional steps need to be applied. They a
 3. Use disposable email addresses
 4. If necessary: use rotating proxies to make ips change
 5. Captcha avoidance?
-
-
-##Todo
-
-
-
-- navigate to page
-- based on a random number between incl. 1 and 5, start voting for songs putting slayer in position of number
-- gegevens
-- choose a random name from lists
-- open an instance of 10minutemail
-- accept terms
-- captcha

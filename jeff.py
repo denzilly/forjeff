@@ -130,9 +130,12 @@ def vote():
     driver.find_element_by_xpath(motiveernext).click()
     time.sleep(wtl)
 
+
+    #Call name generator to enter a random name
     driver.find_element_by_xpath(name).send_keys(namegenerator())
     time.sleep(wts)
     driver.find_element_by_xpath(email).send_keys(getmail())
+    time.sleep(wts)
 
 
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
