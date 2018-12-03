@@ -1,5 +1,7 @@
 from selenium import webdriver
 from random import *
+import csv
+import os
 
 
 
@@ -42,8 +44,24 @@ def vote():
     driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div[2]/div/div/div/div/div[2]/div/a")).click()
 
 
-def personalinfo():
+def namegenerator():
 
+    #some junk in case working directories get messed up
+    abspath = os.path.abspath(__file__)
+    dname = os.path.dirname(abspath)
+    os.chdir(dname)
 
+    firstnum = randint(1,9500)
+    lastnum = randint(1,9500)
+    def nameget(index, filename):
+        with open(filename) as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            rows = [row[0] for idx, row in enumerate(csv_reader) if idx in(index, index)]
 
-initialise()
+            return rows
+
+    full_name = nameget(firstnum,'voornamen.csv')[0] + " " + nameget(lastnum,'achternamen.csv')[0]
+
+    return full_name
+
+print(namegenerator())    
