@@ -1,5 +1,14 @@
 # For Jeff                          
 
+##Updates since original commit
+
+###v0.1
+- Added the initial song selector and slayer randomizer. It's not completely working yet but getting close
+- Added the name generator
+
+
+
+
 ##Concept
 
 In order to avoid detection, certain additional steps need to be applied. They are as follows
