@@ -8,19 +8,19 @@
 
 
 
-##Updates since original commit
+## Updates since original commit
 
-###v0.1
+### v0.1
 - Added the initial song selector and slayer randomizer. It's not completely working yet but getting close
 - Added the name generator
 
-###v0.2
+### v0.2
 - Added email Generator
 - Small scroll changes to make sure elements can be found
 - Seems to be working up until captcha
 
 
-##Concept
+## Concept
 
 In order to avoid detection, certain additional steps need to be applied. They are as follows
 
