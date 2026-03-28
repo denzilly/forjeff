@@ -1,5 +1,9 @@
 # For Jeff                          
 
+ForJeff is an automatic selenium voting bot that attempts to rig radio show contests by voting for Slayer, instead of whatever menial trash reaches the top40 these days.
+
+
+
 
 ## Todo
 
